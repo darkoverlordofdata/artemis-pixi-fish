@@ -23,8 +23,7 @@
     "google-closure-library": "*"
   },
   "dependencies": {
-    "pixi.js": "~3.0.7",
-    "pixi-spine": "git://github.com/pixijs/pixi-spine"
+    "pixi.js": "~3.0.7"
   },
   "install": {
     "ignore": [
@@ -34,8 +33,7 @@
     "path": "web/src",
     "sources": {
       "artemists": "packages/artemists/build/artemis.*",
-      "pixi.js": "packages/pixi.js/bin/pixi.*",
-      "pixi-spine": "packages/pixi-spine/bin/pixi-spine.*"
+      "pixi.js": "packages/pixi.js/bin/pixi.*"
     }
   }
 }

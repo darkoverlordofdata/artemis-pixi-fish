@@ -1,4 +1,4 @@
-# Runner
+# Fish
 
 The pixi.js displacement fish demo implemented using artemis.
 Also, upgraded to pixi 3.07
