@@ -19,7 +19,7 @@ var example;
                 fish4: 'res/displacement_fish4.png',
                 map: 'res/displacement_map.jpg',
                 overlay: 'res/displacement_overlay.png',
-                MAP: 'res/displacement_MAP.png',
+                MAP: 'res/displacementMAP.jpg',
                 waves: 'res/zeldaWaves.png'
             };
             return Constants;

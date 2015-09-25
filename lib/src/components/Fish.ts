@@ -11,6 +11,10 @@ module example.components {
     public static className = 'Fish';
 
     public sprite:Sprite;
+    public direction:number;
+    public speed:number;
+    public turnSpeed:number;
+
 
     public initialize(path?:string, lambda?:Function) {
       this.sprite = Sprite.fromImage(path);
@@ -31,6 +35,9 @@ module example.components {
   }
 
   Fish.prototype.sprite = null;
+  Fish.prototype.direction = 0;
+  Fish.prototype.speed = 0;
+  Fish.prototype.turnSpeed = 0;
 
 }
 

@@ -35,7 +35,7 @@ var example;
                 };
                 /** set the stage */
                 var sprites = this.sprites = new Container();
-                var renderer = this.renderer = PIXI.autoDetectRenderer(630, 410, {
+                var renderer = this.renderer = PIXI.autoDetectRenderer(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT, {
                     backgroundColor: 0x000000
                 });
                 /** save the resources on the blackboard */
@@ -59,6 +59,8 @@ var example;
              * Load assets and start
              */
             Game.main = function () {
+                /** enable sin/cos lookup tables */
+                artemis.utils.TrigLUT.init(true);
                 for (var asset in Constants.assets) {
                     PIXI.loader.add(asset, Constants.assets[asset]);
                 }

@@ -1,12 +1,10 @@
 {
   "files": [
     "web/src/runer/core/Constants.js",
-    "web/src/runer/components/Displacement.js",
     "web/src/runer/components/Background.js",
+    "web/src/runer/components/Bounds.js",
+    "web/src/runer/components/Displacement.js",
     "web/src/runer/components/Fish.js",
-    "web/src/runer/components/Position.js",
-    "web/src/runer/components/Sprite.js",
-    "web/src/runer/components/Velocity.js",
     "web/src/runer/components/Wave.js",
     "web/src/runer/entities/BackgroundTemplate.js",
     "web/src/runer/entities/FishTemplate.js",

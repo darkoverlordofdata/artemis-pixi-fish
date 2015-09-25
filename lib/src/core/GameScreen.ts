@@ -25,8 +25,12 @@ module example.core {
       world.initialize();
       world.createEntityFromTemplate('background', res.background, res.waves, res.map).addToWorld();
 
+      var fishes = [];
+      for (var k in res)
+        if (/fish\d*/.test(k)) fishes.push(res[k]);
+
       for (var i = 0; i < 20; i++) {
-        world.createEntityFromTemplate('fish', `res/displacement_fish${(i%4)+1}.png`).addToWorld();
+        world.createEntityFromTemplate('fish', fishes).addToWorld();
       }
     }
 

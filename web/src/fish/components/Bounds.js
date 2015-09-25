@@ -18,26 +18,28 @@ var example;
     (function (components) {
         var PooledComponent = artemis.PooledComponent;
         var Pooled = artemis.annotations.Pooled;
-        var Velocity = (function (_super) {
-            __extends(Velocity, _super);
-            function Velocity() {
+        var Bounds = (function (_super) {
+            __extends(Bounds, _super);
+            function Bounds() {
                 _super.apply(this, arguments);
             }
-            Velocity.prototype.initialize = function (vectorX, vectorY) {
-                if (vectorX === void 0) { vectorX = 0; }
-                if (vectorY === void 0) { vectorY = 0; }
-                this.vectorX = vectorX;
-                this.vectorY = vectorY;
+            Bounds.prototype.initialize = function (rect) {
+                this.x = rect.x;
+                this.y = rect.y;
+                this.width = rect.width;
+                this.height = rect.height;
             };
-            Velocity.className = 'Velocity';
-            Velocity = __decorate([
+            Bounds.className = 'Bounds';
+            Bounds = __decorate([
                 Pooled()
-            ], Velocity);
-            return Velocity;
+            ], Bounds);
+            return Bounds;
         })(PooledComponent);
-        components.Velocity = Velocity;
-        Velocity.prototype.vectorX = 0;
-        Velocity.prototype.vectorY = 0;
+        components.Bounds = Bounds;
+        Bounds.prototype.x = 0;
+        Bounds.prototype.y = 0;
+        Bounds.prototype.width = 0;
+        Bounds.prototype.height = 0;
     })(components = example.components || (example.components = {}));
 })(example || (example = {}));
-//# sourceMappingURL=Velocity.js.map
+//# sourceMappingURL=Bounds.js.map

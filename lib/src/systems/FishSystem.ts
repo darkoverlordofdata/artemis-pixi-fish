@@ -1,8 +1,9 @@
 module example.systems {
 
-  import Position = example.components.Position;
+  import Bounds = example.components.Bounds;
   import Fish = example.components.Fish;
   import Sprite = PIXI.Sprite;
+  import Point = PIXI.Point;
 
   import Aspect = artemis.Aspect;
   import ComponentMapper = artemis.ComponentMapper;
@@ -11,32 +12,35 @@ module example.systems {
   import Mapper = artemis.annotations.Mapper;
 
   export class FishSystem extends EntityProcessingSystem {
-    @Mapper(Position) pm:ComponentMapper<Position>;
+    @Mapper(Bounds) bm:ComponentMapper<Bounds>;
     @Mapper(Fish) fm:ComponentMapper<Fish>;
 
     constructor() {
-      super(Aspect.getAspectForAll(Position, Fish));
+      super(Aspect.getAspectForAll(Bounds, Fish));
     }
 
     public processEach(e:Entity) {
-      var padding = 100;
-      var bounds = new PIXI.Rectangle(-padding, -padding, 630 + padding * 2, 410 + padding * 2);
-
-      var fish:Sprite = this.fm.get(e).sprite;
+      var bounds:Bounds = this.bm.get(e);
+      var fish:Fish = this.fm.get(e);
+      var position:Point = fish.sprite.position;
 
       fish.direction += fish.turnSpeed * 0.01;
-      fish.position.x += Math.sin(fish.direction) * fish.speed;
-      fish.position.y += Math.cos(fish.direction) * fish.speed;
+      position.x += Math.sin(fish.direction) * fish.speed;
+      position.y += Math.cos(fish.direction) * fish.speed;
 
-      fish.rotation = -fish.direction - Math.PI/2;
+      fish.sprite.rotation = -fish.direction - Math.PI/2;
 
       // wrap..
 
-      if(fish.position.x < bounds.x)fish.position.x += bounds.width;
-      if(fish.position.x > bounds.x + bounds.width)fish.position.x -= bounds.width
+      if (position.x < bounds.x)
+        position.x += bounds.width;
+      if (position.x > bounds.x + bounds.width)
+        position.x -= bounds.width;
 
-      if(fish.position.y < bounds.y)fish.position.y += bounds.height;
-      if(fish.position.y > bounds.y + bounds.height)fish.position.y -= bounds.height
+      if (position.y < bounds.y)
+        position.y += bounds.height;
+      if (position.y > bounds.y + bounds.height)
+        position.y -= bounds.height;
 
 
     }

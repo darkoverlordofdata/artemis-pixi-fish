@@ -10,28 +10,32 @@ var example;
 (function (example) {
     var templates;
     (function (templates) {
+        var TAU = Math.PI * 2;
         var GroupManager = artemis.managers.GroupManager;
         var EntitySystem = artemis.EntitySystem;
         var EntityTemplate = artemis.annotations.EntityTemplate;
-        var Position = example.components.Position;
+        var Bounds = example.components.Bounds;
         var Fish = example.components.Fish;
         var Constants = example.core.Constants;
+        var MathUtils = artemis.utils.MathUtils;
         var FishTemplate = (function () {
             function FishTemplate() {
             }
-            FishTemplate.prototype.buildEntity = function (entity, world, path) {
+            FishTemplate.prototype.buildEntity = function (entity, world, fishes) {
                 var padding = 100;
-                var bounds = new PIXI.Rectangle(-padding, -padding, 630 + padding * 2, 410 + padding * 2);
-                var x = Math.random() * bounds.width;
-                var y = Math.random() * bounds.height;
-                entity.addComponent(Position, x, y);
+                var bounds = new PIXI.Rectangle(-padding, -padding, Constants.FRAME_WIDTH + padding * 2, Constants.FRAME_HEIGHT + padding * 2);
+                var path = fishes[MathUtils.nextInt(fishes.length)].url;
+                entity.addComponent(Bounds, bounds);
                 entity.addComponent(Fish, path, function (fish) {
-                    fish.sprite.direction = Math.random() * Math.PI * 2;
-                    fish.sprite.speed = 2 + Math.random() * 2;
-                    fish.sprite.turnSpeed = Math.random() - 0.8;
-                    fish.sprite.position.x = x;
-                    fish.sprite.position.y = y;
-                    fish.sprite.scale.x = fish.sprite.scale.y = 0.8 + Math.random() * 0.3;
+                    fish.direction = Math.random() * TAU;
+                    fish.speed = 2 + Math.random() * 2;
+                    fish.turnSpeed = Math.random() - 0.8;
+                    var position = fish.sprite.position;
+                    position.x = Math.random() * bounds.width;
+                    ;
+                    position.y = Math.random() * bounds.height;
+                    var scale = fish.sprite.scale;
+                    scale.x = scale.y = 0.8 + Math.random() * 0.3;
                     fish.addTo(EntitySystem.blackBoard.getEntry('sprites'));
                 });
                 world.getManager(GroupManager).add(entity, Constants.Groups.FISH);

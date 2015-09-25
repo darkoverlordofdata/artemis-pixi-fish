@@ -44,6 +44,9 @@ var example;
         })(PooledComponent);
         components.Fish = Fish;
         Fish.prototype.sprite = null;
+        Fish.prototype.direction = 0;
+        Fish.prototype.speed = 0;
+        Fish.prototype.turnSpeed = 0;
     })(components = example.components || (example.components = {}));
 })(example || (example = {}));
 //# sourceMappingURL=Fish.js.map
