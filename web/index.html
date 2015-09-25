@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Run!</title>
+    <link rel="icon" type="image/GIF" href="favicon.png"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="full-screen" content="yes"/>
+    <meta name="screen-orientation" content="portrait"/>
+    <meta name="x5-fullscreen" content="true"/>
+    <meta name="360-fullscreen" content="true"/>
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Artemis+PIXI">
+    <meta name="author" content="">
+
+    <link href='http://fonts.googleapis.com/css?family=Orbitron:900' rel='stylesheet' type='text/css'>
+    <style>
+        html {
+            background: url(logo.png) #000;
+            background-repeat: no-repeat;
+            background-size: cover;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+        }
+        body {
+            padding:0;
+            margin: 0;
+            overflow: hidden;
+        }
+        body, canvas, div {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            -khtml-user-select: none;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+    </style>
+</head>
+<body>
+</body>
+<script src="src/pixi.js/pixi.js"></script>
+<script src="src/artemists/artemis.min.js"></script>
+<script src="src/fish/core/Constants.js"></script>
+<script src="src/fish/components/Background.js"></script>
+<script src="src/fish/components/Displacement.js"></script>
+<script src="src/fish/components/Fish.js"></script>
+<script src="src/fish/components/Position.js"></script>
+<script src="src/fish/components/Sprite.js"></script>
+<script src="src/fish/components/Velocity.js"></script>
+<script src="src/fish/components/Wave.js"></script>
+<script src="src/fish/entities/BackgroundTemplate.js"></script>
+<script src="src/fish/entities/FishTemplate.js"></script>
+<script src="src/fish/systems/BackgroundSystem.js"></script>
+<script src="src/fish/systems/FishSystem.js"></script>
+<script src="src/fish/core/GameScreen.js"></script>
+<script src="src/fish/core/Game.js"></script>
+<script src="main.js"></script>
+</html>

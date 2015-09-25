@@ -1,0 +1,41 @@
+{
+  "name": "fish",
+  "version": "0.0.1",
+  "authors": [
+    "darkoverlordofdata@gmail.com"
+  ],
+  "description": "Displacement Fish in Artemis",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "tmp",
+    "build",
+    "node_modules",
+    "packages",
+    "src",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "artemists": "git://github.com/darkoverlordofdata/artemists",
+    "closure-compiler": "0.2.7",
+    "google-closure-library": "*"
+  },
+  "dependencies": {
+    "pixi.js": "~3.0.7",
+    "pixi-spine": "git://github.com/pixijs/pixi-spine"
+  },
+  "install": {
+    "ignore": [
+      "closure-compiler",
+      "google-closure-library"
+    ],
+    "path": "web/src",
+    "sources": {
+      "artemists": "packages/artemists/build/artemis.*",
+      "pixi.js": "packages/pixi.js/bin/pixi.*",
+      "pixi-spine": "packages/pixi-spine/bin/pixi-spine.*"
+    }
+  }
+}

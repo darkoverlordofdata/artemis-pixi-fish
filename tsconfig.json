@@ -1,0 +1,33 @@
+{
+    "compilerOptions": {
+        "target": "ES5",
+        "module": "commonjs",
+        "noImplicitAny": false,
+        "removeComments": false,
+        "preserveConstEnums": false,
+        "sourceMap": true,
+        "experimentalDecorators": true,
+        "outDir": "web/src/fish"
+
+    },
+
+    "files": [
+      "lib/src/artemis.d.ts",
+      "lib/src/pixi.js.d.ts",
+      "lib/src/core/Constants",
+      "lib/src/components/Background.ts",
+      "lib/src/components/Displacement.ts",
+      "lib/src/components/Fish.ts",
+      "lib/src/components/Position.ts",
+      "lib/src/components/Sprite.ts",
+      "lib/src/components/Velocity.ts",
+      "lib/src/components/Wave.ts",
+      "lib/src/entities/BackgroundTemplate.ts",
+      "lib/src/entities/FishTemplate.ts",
+      "lib/src/systems/BackgroundSystem.ts",
+      "lib/src/systems/FishSystem.ts",
+      "lib/src/core/GameScreen.ts",
+      "lib/src/core/Game.ts"
+   ]
+	
+}

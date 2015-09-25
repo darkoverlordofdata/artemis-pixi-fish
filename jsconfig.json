@@ -1,0 +1,18 @@
+{
+  "files": [
+    "web/src/runer/core/Constants.js",
+    "web/src/runer/components/Displacement.js",
+    "web/src/runer/components/Background.js",
+    "web/src/runer/components/Fish.js",
+    "web/src/runer/components/Position.js",
+    "web/src/runer/components/Sprite.js",
+    "web/src/runer/components/Velocity.js",
+    "web/src/runer/components/Wave.js",
+    "web/src/runer/entities/BackgroundTemplate.js",
+    "web/src/runer/entities/FishTemplate.js",
+    "web/src/runer/systems/BackgroundRenderSystem.js",
+    "web/src/runer/systems/FishSystem.js",
+    "web/src/runer/core/GameScreen.js",
+    "web/src/runer/core/Game.js"
+  ]
+}
