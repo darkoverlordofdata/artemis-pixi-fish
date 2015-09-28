@@ -11,8 +11,9 @@ var example;
     var templates;
     (function (templates) {
         var TAU = Math.PI * 2;
-        var GroupManager = artemis.managers.GroupManager;
+        var InvertFilter = PIXI.filters.InvertFilter;
         var EntitySystem = artemis.EntitySystem;
+        var GroupManager = artemis.managers.GroupManager;
         var EntityTemplate = artemis.annotations.EntityTemplate;
         var Bounds = example.components.Bounds;
         var Fish = example.components.Fish;
@@ -30,17 +31,35 @@ var example;
                     fish.direction = Math.random() * TAU;
                     fish.speed = 2 + Math.random() * 2;
                     fish.turnSpeed = Math.random() - 0.8;
-                    var position = fish.sprite.position;
-                    position.x = Math.random() * bounds.width;
-                    ;
-                    position.y = Math.random() * bounds.height;
-                    var scale = fish.sprite.scale;
-                    scale.x = scale.y = 0.8 + Math.random() * 0.3;
+                    var sprite = fish.sprite;
+                    sprite.position.set(Math.random() * bounds.width, Math.random() * bounds.height);
+                    sprite.scale.set(0.8 + Math.random() * 0.3);
+                    /**
+                     * Touch Fish Events
+                     */
+                    var onTouchStart = function () {
+                        //sprite.alpha = .5;
+                        fish.speed /= 2;
+                        fish.turnSpeed /= 2;
+                        sprite.filters = [FishTemplate.invertFilter];
+                    };
+                    var onTouchEnd = function () {
+                        //sprite.alpha = 1;
+                        sprite.filters = null;
+                    };
+                    sprite.interactive = true;
+                    sprite.on('mousedown', onTouchStart);
+                    sprite.on('touchstart', onTouchStart);
+                    sprite.on('mouseup', onTouchEnd);
+                    sprite.on('touchend', onTouchEnd);
+                    sprite.on('mouseupoutside', onTouchEnd);
+                    sprite.on('touchendoutside', onTouchEnd);
                     fish.addTo(EntitySystem.blackBoard.getEntry('sprites'));
                 });
                 world.getManager(GroupManager).add(entity, Constants.Groups.FISH);
                 return entity;
             };
+            FishTemplate.invertFilter = new InvertFilter();
             FishTemplate = __decorate([
                 EntityTemplate('fish')
             ], FishTemplate);

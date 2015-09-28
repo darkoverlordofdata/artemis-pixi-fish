@@ -1,9 +1,15 @@
 module example.core {
 
+  export enum ScaleType {
+    FILL, // expand to fill the screen
+    FIXED // scale fixed size to fit the screen
+  }
+
   export class Constants {
 
     public static FRAME_WIDTH:number = 630; //window.innerWidth;
     public static FRAME_HEIGHT:number = 410; //window.innerHeight;
+    public static SCALE_TYPE:ScaleType = ScaleType.FIXED;
 
     public static Groups = {
       FISH: "fish",

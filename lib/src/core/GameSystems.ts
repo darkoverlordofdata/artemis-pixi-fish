@@ -8,14 +8,13 @@ module example.core {
   import BackgroundSystem = example.systems.BackgroundSystem;
   import FishSystem = example.systems.FishSystem;
 
-  export class GameScreen {
+  export class GameSystems {
 
     private world:World;
 
-    //private spriteRenderSystem:SpriteRenderSystem;
+    constructor(webgl:boolean) {
 
-    constructor(sprites, res) {
-
+      var res = EntitySystem.blackBoard.getEntry('resources');
       var world:World = this.world = new artemis.World();
 
       world.setManager(new GroupManager());
@@ -23,7 +22,7 @@ module example.core {
       world.setSystem(new FishSystem());
 
       world.initialize();
-      world.createEntityFromTemplate('background', res.background, res.waves, res.map).addToWorld();
+      world.createEntityFromTemplate('background', res).addToWorld();
 
       var fishes = [];
       for (var k in res)
@@ -34,7 +33,7 @@ module example.core {
       }
     }
 
-    public render(delta:number) {
+    public update(delta:number) {
 
       this.world.setDelta(delta);
       this.world.process();

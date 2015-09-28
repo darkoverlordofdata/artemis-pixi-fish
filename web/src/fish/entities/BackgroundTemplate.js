@@ -20,16 +20,16 @@ var example;
         var BackgroundTemplate = (function () {
             function BackgroundTemplate() {
             }
-            BackgroundTemplate.prototype.buildEntity = function (entity, world, background, waves, map) {
+            BackgroundTemplate.prototype.buildEntity = function (entity, world, res) {
                 var container = EntitySystem.blackBoard.getEntry('sprites');
-                entity.addComponent(Background, background.url, function (sprite) {
+                entity.addComponent(Background, res.background.url, function (sprite) {
                     sprite.addTo(container);
                 });
-                entity.addComponent(Wave, waves.url, function (sprite) {
+                entity.addComponent(Wave, res.waves.url, function (sprite) {
                     sprite.sprite.alpha = 0.1;
                     sprite.addTo(container);
                 });
-                entity.addComponent(Displacement, map.url, function (filter) {
+                entity.addComponent(Displacement, res.map.url, function (filter) {
                     filter.filter.scale.x = 50;
                     filter.filter.scale.y = 50;
                     container.filters = [filter.filter];

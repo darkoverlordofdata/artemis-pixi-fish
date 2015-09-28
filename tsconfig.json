@@ -24,7 +24,7 @@
       "lib/src/entities/FishTemplate.ts",
       "lib/src/systems/BackgroundSystem.ts",
       "lib/src/systems/FishSystem.ts",
-      "lib/src/core/GameScreen.ts",
+      "lib/src/core/GameSystems.ts",
       "lib/src/core/Game.ts"
    ]
 	

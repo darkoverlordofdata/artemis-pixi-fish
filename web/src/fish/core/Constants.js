@@ -2,11 +2,17 @@ var example;
 (function (example) {
     var core;
     (function (core) {
+        (function (ScaleType) {
+            ScaleType[ScaleType["FILL"] = 0] = "FILL";
+            ScaleType[ScaleType["FIXED"] = 1] = "FIXED"; // scale fixed size to fit the screen
+        })(core.ScaleType || (core.ScaleType = {}));
+        var ScaleType = core.ScaleType;
         var Constants = (function () {
             function Constants() {
             }
             Constants.FRAME_WIDTH = 630; //window.innerWidth;
             Constants.FRAME_HEIGHT = 410; //window.innerHeight;
+            Constants.SCALE_TYPE = ScaleType.FIXED;
             Constants.Groups = {
                 FISH: "fish",
                 BACKGROUND: "background"

@@ -30,7 +30,7 @@ var example;
             BackgroundSystem.prototype.processEach = function (e) {
                 var wave = this.wm.get(e);
                 this.count += 0.1;
-                wave.sprite.tilePosition.x = this.count * -10; //blurAmount * 40;
+                wave.sprite.tilePosition.x = this.count * -10;
                 wave.sprite.tilePosition.y = this.count * -10;
             };
             __decorate([

@@ -1,17 +1,23 @@
+/**
+ * Game
+ *
+ * connects the environment to the ecs
+ */
 module example.core {
 
   import Container = PIXI.Container;
   import Sprite = PIXI.Sprite;
   import SystemRenderer = PIXI.SystemRenderer;
-  import GameScreen = example.core.GameScreen;
+  import GameSystems = example.core.GameSystems;
   import Constants = example.core.Constants;
   import EntitySystem = artemis.EntitySystem;
+  import ScaleType = example.core.ScaleType;
 
   export class Game {
 
     public sprites:Container;
     public renderer:SystemRenderer;
-    public gameScreen:GameScreen;
+    public systems:GameSystems;
     private delta:number=0;
     private previousTime:number=0;
 
@@ -19,9 +25,6 @@ module example.core {
      * Load assets and start
      */
     public static main() {
-      /** enable sin/cos lookup tables */
-      artemis.utils.TrigLUT.init(true);
-
       for (var asset in Constants.assets) {
         PIXI.loader.add(asset, Constants.assets[asset]);
       }
@@ -34,30 +37,26 @@ module example.core {
      */
     constructor(resources) {
 
-      /** set the stage */
-      var sprites = this.sprites = new Container();
-      var renderer = this.renderer = PIXI.autoDetectRenderer(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT, {
-        backgroundColor:0x000000
-      });
-
-      /** save the resources on the blackboard */
+      this.sprites = new Container();
+      EntitySystem.blackBoard.setEntry('sprites', this.sprites);
       EntitySystem.blackBoard.setEntry('resources', resources);
-      EntitySystem.blackBoard.setEntry('sprites', sprites);
-      EntitySystem.blackBoard.setEntry('webgl', this.renderer.type === PIXI.RENDERER_TYPE.WEBGL);
 
-      /** setup the environment */
-      renderer.view.style.position = "absolute";
-      renderer.view.style.position = "absolute";
-      renderer.view.style.width = window.innerWidth + "px";
-      renderer.view.style.height = window.innerHeight + "px";
-      renderer.view.style.display = "block";
-
+      var renderer = this.renderer = PIXI.autoDetectRenderer(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT, {backgroundColor:0x000000});
+      switch (Constants.SCALE_TYPE) {
+        case ScaleType.FILL:
+          this.renderer.view.style.position = "absolute";
+          break;
+        case ScaleType.FIXED:
+          renderer.view.style.position = "absolute";
+          renderer.view.style.width = window.innerWidth + "px";
+          renderer.view.style.height = window.innerHeight + "px";
+          renderer.view.style.display = "block";
+          break;
+      }
       document.body.appendChild(this.renderer.view);
       window.addEventListener('resize', this.resize, true);
       window.onorientationchange = this.resize;
-
-      /** start the game */
-      this.gameScreen = new GameScreen(sprites, resources);
+      this.systems = new GameSystems(this.renderer.type === PIXI.RENDERER_TYPE.WEBGL);
       requestAnimationFrame(this.update);
     }
 
@@ -68,7 +67,7 @@ module example.core {
     update = (time:number) => {
       this.delta = this.previousTime || time;
       this.previousTime = time;
-      this.gameScreen.render((time - this.delta) * 0.001);
+      this.systems.update((time - this.delta) * 0.001);
       this.renderer.render(this.sprites);
       requestAnimationFrame(this.update);
     };
@@ -77,8 +76,17 @@ module example.core {
      * Resize window
      */
     resize = () => {
-      this.renderer.view.style.width = window.innerWidth + "px";
-      this.renderer.view.style.height = window.innerHeight + "px";
+      switch (Constants.SCALE_TYPE) {
+        case ScaleType.FILL:
+          var height = window.innerHeight;
+          var width = window.innerWidth;
+          this.renderer.resize(width, height);
+          break;
+        case ScaleType.FIXED:
+          this.renderer.view.style.width = window.innerWidth + "px";
+          this.renderer.view.style.height = window.innerHeight + "px";
+          break;
+      }
     };
 
   }

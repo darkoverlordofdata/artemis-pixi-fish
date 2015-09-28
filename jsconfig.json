@@ -10,7 +10,7 @@
     "web/src/runer/entities/FishTemplate.js",
     "web/src/runer/systems/BackgroundRenderSystem.js",
     "web/src/runer/systems/FishSystem.js",
-    "web/src/runer/core/GameScreen.js",
+    "web/src/runer/core/GameSystems.js",
     "web/src/runer/core/Game.js"
   ]
 }
